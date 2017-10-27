@@ -13,6 +13,11 @@ def c_game(response, guess_1, guess_2):
         print('Correct. So the answer is', guess_1, guess_2)
 
     elif(response == '1c'):
+        # removeing node = [guess_1, guess_2]
+        for i in range(0, len(pool_2)):
+            if(guess_1 and guess_2 in pool_2[i]):
+                pool_2.remove[i]
+        # removeing node don't have guess_1 or guess_2.
         for i in range(0, len(pool_2)):
             while(guess_1 or guess_2 not in pool_2[i]):
                 pool_2.remove[i]
