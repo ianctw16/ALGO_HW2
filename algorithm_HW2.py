@@ -2,6 +2,10 @@ import time
 import random
 
 pool = [0, 1, 2, 3, 4]
+pool_2 = []
+for i in range(0, 5):
+    for j in range(i+1, 5):
+        pool_2.append([i, j])
 
 
 def c_game(response, guess_1, guess_2):
@@ -9,8 +13,9 @@ def c_game(response, guess_1, guess_2):
         print('Correct. So the answer is', guess_1, guess_2)
 
     elif(response == '1c'):
-
-        pass
+        for i in range(0, len(pool_2)):
+            while(guess_1 or guess_2 not in pool_2[i]):
+                pool_2.remove[i]
 
     elif(response == '0c'):
         pool.remove(guess_1)
