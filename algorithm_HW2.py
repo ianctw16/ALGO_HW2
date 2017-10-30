@@ -1,7 +1,7 @@
 import time
 import random
 import tkinter as tk
-from tkinter import LEFT, BOTTOM
+from tkinter import LEFT, BOTTOM, RIGHT, TOP
 
 window = tk.Tk()
 window.title('2*5 #C')
@@ -93,15 +93,17 @@ l_system_ask_3.pack(side=LEFT)
 l_system_ask_4.pack(side=LEFT)
 
 # Candidate Label
+f_top = tk.Frame(window)
+f_top.pack(side=TOP)
 var_candidate_2 = tk.StringVar()
 var_candidate_2.set('Candidates: ')
 var_candidate = tk.StringVar()
-l_candidate = tk.Label(window,
+l_candidate = tk.Label(f_top,
                        textvariable=var_candidate)
-l_candidate_2 = tk.Label(window,
+l_candidate_2 = tk.Label(f_top,
                          textvariable=var_candidate_2)
-l_candidate_2.pack()
-l_candidate.pack()
+l_candidate_2.pack(side=LEFT)
+l_candidate.pack(side=LEFT)
 
 pool_2 = []
 for i in range(0, 5):
@@ -116,7 +118,7 @@ guess_1 = pool_2[test][0]
 guess_2 = pool_2[test][1]
 print('-------------2*5 #c Game-------------')
 ask_ans(guess_1, guess_2)
-
+'''
 # Answer Buttons
 c2_button = tk.Button(window,
                       text='2c',
@@ -130,4 +132,20 @@ c0_button = tk.Button(window,
 c2_button.pack()
 c1_button.pack()
 c0_button.pack()
+'''
+
+
+def e_submit():
+    ans = e.get()
+    c_game(ans, guess_1, guess_2)
+
+
+f_bot = tk.Frame(window)
+f_bot.pack(side=BOTTOM)
+l_e = tk.Label(f_bot, text='A(2c,1c,0c):')
+e = tk.Entry(f_bot)
+e_button = tk.Button(f_bot, text='submit', command=e_submit)
+l_e.pack(side=LEFT)
+e.pack(side=RIGHT)
+e_button.pack(side=RIGHT)
 window.mainloop()
