@@ -1,5 +1,21 @@
 import time
 import random
+import tkinter as tk
+
+
+window = tk.Tk()
+window.title('2*5 #C')
+window.configure(background='white')
+window.geometry('600x400')
+
+var_candidate = tk.StringVar()    # 这时文字变量储存器
+l_candidate = tk.Label(window,
+                       textvariable=var_candidate,   # 使用 textvariable 替换 text, 因为这个可以变化
+                       bg='green',
+                       font=('Arial', 12),
+                       width=15,
+                       height=2)
+l_candidate.pack()
 
 pool_2 = []
 for i in range(0, 5):
@@ -57,6 +73,7 @@ def c_game(response, guess_1, guess_2):
 
 def ask_ans(guess_1, guess_2):
     print('Candidate:', pool_2)
+    var_candidate.set('Candidate:', pool_2)
     print('is(', guess_1, guess_2, ')?')
     response = input(">>> Ans(2c, 1c, 0c): ")
     c_game(response, guess_1, guess_2)
