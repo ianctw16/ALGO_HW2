@@ -19,6 +19,7 @@ def c_game(response):
         var_system_ask_3.set(guess_2)
         var_system_ask_4.set('')
         print('Correct. The number is', guess_1, guess_2)
+        restart_button.pack(side=RIGHT)
 
     elif(response == '1c'):
         # removeing node = [guess_1, guess_2]
@@ -126,7 +127,9 @@ l_system_ask_4.pack(side=LEFT)
 
 
 def restart():
+    print()
     print('---------------restart---------------')
+    print()
     global pool_2, guess_1, guess_2
     pool_2 = []
     for i in range(0, 5):
@@ -141,6 +144,7 @@ def restart():
     print('log: ')
     var_system_ask_1.set('Your number is(')
     var_system_ask_4.set(')?')
+    restart_button.pack_forget()
     ask_ans()
 
 
@@ -192,11 +196,11 @@ l_e = tk.Label(f_bot, text='A(2c,1c,0c):',
                bg='light yellow')
 e = tk.Entry(f_bot)
 e_button = tk.Button(f_bot,
-                     text='submit',
+                     text='Submit',
                      bg='gold',
                      font=("Comic Sans MS", 16),
                      command=e_submit)
-restart_button = tk.Button(window,
+restart_button = tk.Button(f_top_2,
                            text='RE',
                            bg='brown1',
                            font=("Comic Sans MS", 20),
@@ -204,5 +208,4 @@ restart_button = tk.Button(window,
 l_e.pack(side=LEFT)
 e_button.pack(side=RIGHT)
 e.pack(side=RIGHT)
-restart_button.pack()
 window.mainloop()
