@@ -1,31 +1,22 @@
 import time
 import random
 import tkinter as tk
-
+from tkinter import LEFT, BOTTOM
 
 window = tk.Tk()
 window.title('2*5 #C')
 window.configure(background='white')
 window.geometry('600x400')
 
-var_candidate = tk.StringVar()    # 这时文字变量储存器
-l_candidate = tk.Label(window,
-                       textvariable=var_candidate,   # 使用 textvariable 替换 text, 因为这个可以变化
-                       bg='green',
-                       font=('Arial', 12),
-                       width=15,
-                       height=2)
-l_candidate.pack()
-
-pool_2 = []
-for i in range(0, 5):
-    for j in range(i+1, 5):
-        pool_2.append([i, j])
-
 
 def c_game(response, guess_1, guess_2):
+    global pool_2
     if(response == '2c'):
         print('Correct. So the answer is', guess_1, guess_2)
+        var_system_ask_1.set('Correct. so the answer is')
+        var_system_ask_2.set(guess_1)
+        var_system_ask_3.set(guess_2)
+        var_system_ask_4.set('')
 
     elif(response == '1c'):
         # removeing node = [guess_1, guess_2]
@@ -72,11 +63,50 @@ def c_game(response, guess_1, guess_2):
 
 
 def ask_ans(guess_1, guess_2):
-    print('Candidate:', pool_2)
-    var_candidate.set('Candidate:', pool_2)
-    print('is(', guess_1, guess_2, ')?')
-    response = input(">>> Ans(2c, 1c, 0c): ")
-    c_game(response, guess_1, guess_2)
+    # print('Candidate:', pool_2)
+    var_candidate.set(pool_2)
+    # print('is(', guess_1, guess_2, ')?')
+    var_system_ask_2.set(guess_1)
+    var_system_ask_3.set(guess_2)
+    # response = input(">>> Ans(2c, 1c, 0c): ")
+    # c_game(response, guess_1, guess_2)
+
+
+# System Ask Label
+var_system_ask_1 = tk.StringVar()
+var_system_ask_1.set('Is(')
+var_system_ask_2 = tk.StringVar()
+var_system_ask_3 = tk.StringVar()
+var_system_ask_4 = tk.StringVar()
+var_system_ask_4.set(')?')
+l_system_ask_1 = tk.Label(window,
+                          textvariable=var_system_ask_1,)
+l_system_ask_2 = tk.Label(window,
+                          textvariable=var_system_ask_2,)
+l_system_ask_3 = tk.Label(window,
+                          textvariable=var_system_ask_3,)
+l_system_ask_4 = tk.Label(window,
+                          textvariable=var_system_ask_4,)
+l_system_ask_1.pack(side=LEFT)
+l_system_ask_2.pack(side=LEFT)
+l_system_ask_3.pack(side=LEFT)
+l_system_ask_4.pack(side=LEFT)
+
+# Candidate Label
+var_candidate_2 = tk.StringVar()
+var_candidate_2.set('Candidates: ')
+var_candidate = tk.StringVar()
+l_candidate = tk.Label(window,
+                       textvariable=var_candidate)
+l_candidate_2 = tk.Label(window,
+                         textvariable=var_candidate_2)
+l_candidate_2.pack()
+l_candidate.pack()
+
+pool_2 = []
+for i in range(0, 5):
+    for j in range(i+1, 5):
+        pool_2.append([i, j])
 
 
 random.seed(time.time())
@@ -86,3 +116,18 @@ guess_1 = pool_2[test][0]
 guess_2 = pool_2[test][1]
 print('-------------2*5 #c Game-------------')
 ask_ans(guess_1, guess_2)
+
+# Answer Buttons
+c2_button = tk.Button(window,
+                      text='2c',
+                      command=c_game('2c', guess_1, guess_2))
+c1_button = tk.Button(window,
+                      text='1c',
+                      command=c_game('1c', guess_1, guess_2))
+c0_button = tk.Button(window,
+                      text='0c',
+                      commmad=c_game('0c', guess_1, guess_2))
+c2_button.pack()
+c1_button.pack()
+c0_button.pack()
+window.mainloop()
