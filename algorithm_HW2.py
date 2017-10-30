@@ -9,8 +9,9 @@ window.configure(background='white')
 window.geometry('600x400')
 
 
-def c_game(response, guess_1, guess_2):
+def c_game(response):
     global pool_2
+    global guess_1, guess_2
     if(response == '2c'):
         print('Correct. So the answer is', guess_1, guess_2)
         var_system_ask_1.set('Correct. so the answer is')
@@ -43,8 +44,6 @@ def c_game(response, guess_1, guess_2):
         guess_1 = pool_2[test][0]
         guess_2 = pool_2[test][1]
 
-        ask_ans(guess_1, guess_2)
-
     elif(response == '0c'):
         i = 0
         while(i < len(pool_2)):
@@ -59,10 +58,11 @@ def c_game(response, guess_1, guess_2):
         guess_1 = pool_2[test][0]
         guess_2 = pool_2[test][1]
 
-        ask_ans(guess_1, guess_2)
+    ask_ans()
 
 
-def ask_ans(guess_1, guess_2):
+def ask_ans():
+    global guess_1, guess_2
     # print('Candidate:', pool_2)
     var_candidate.set(pool_2)
     # print('is(', guess_1, guess_2, ')?')
@@ -117,7 +117,7 @@ print()
 guess_1 = pool_2[test][0]
 guess_2 = pool_2[test][1]
 print('-------------2*5 #c Game-------------')
-ask_ans(guess_1, guess_2)
+ask_ans()
 '''
 # Answer Buttons
 c2_button = tk.Button(window,
@@ -137,7 +137,8 @@ c0_button.pack()
 
 def e_submit():
     ans = e.get()
-    c_game(ans, guess_1, guess_2)
+    print(guess_1, guess_2)
+    c_game(ans)
 
 
 f_bot = tk.Frame(window)
