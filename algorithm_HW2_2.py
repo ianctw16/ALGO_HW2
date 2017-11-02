@@ -28,18 +28,46 @@ def c_game(response):
         while([guess_1, guess_2] not in pool_2):
             guess_1 = pool_3[random.randrange(0, len(pool_3))]
             guess_2 = pool_3[random.randrange(0, len(pool_3))]
+        if(guess_1 > guess_2):
+            tmp = guess_1
+            guess_1 = guess_2
+            guess_2 = tmp
         ask_ans()
 
     elif(response == '0c'):
         pool_3.remove(guess_1)
         pool_3.remove(guess_2)
 
+        i = 0
+        while(i < len(pool_2)):
+            if(guess_1 in pool_2[i] or guess_2 in pool_2[i]):
+                pool_2.remove(pool_2[i])
+                i = 0
+            else:
+                i = i + 1
+
         guess_1 = pool_3[random.randrange(0, len(pool_3))]
         guess_2 = pool_3[random.randrange(0, len(pool_3))]
+
         while(guess_1 == guess_2):
             guess_2 = pool_3[random.randrange(0, len(pool_3))]
-        while(guess_1 in WNAK and guess_2):
-            pass
+
+        if(guess_1 > guess_2):
+            tmp = guess_1
+            guess_1 = guess_2
+            guess_2 = tmp
+
+        while([guess_1, guess_2] not in pool_2):
+            guess_1 = pool_3[random.randrange(0, len(pool_3))]
+            guess_2 = pool_3[random.randrange(0, len(pool_3))]
+
+            while(guess_1 == guess_2):
+                guess_2 = pool_3[random.randrange(0, len(pool_3))]
+
+            if(guess_1 > guess_2):
+                tmp = guess_1
+                guess_1 = guess_2
+                guess_2 = tmp
 
         ask_ans()
 
@@ -111,8 +139,9 @@ def restart():
     print()
     print('---------------restart---------------')
     print()
-    global pool_2, guess_1, guess_2
+    global pool_2, guess_1, guess_2, pool_3
     pool_2 = []
+    pool_3 = [0, 1, 2, 3, 4]
     for i in range(0, 5):
         for j in range(i+1, 5):
             pool_2.append([i, j])
