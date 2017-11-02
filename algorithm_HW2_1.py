@@ -148,19 +148,20 @@ def restart():
     ask_ans()
 
 
+# creat a array to store the all possible set.
 pool_2 = []
 for i in range(0, 5):
     for j in range(i+1, 5):
         pool_2.append([i, j])
 
-
+# random to choose a set from pool_2
 random.seed(time.time())
 test = random.randrange(0, len(pool_2))
 # print()
 guess_1 = pool_2[test][0]
 guess_2 = pool_2[test][1]
 print('log: ')
-ask_ans()
+ask_ans()  # print the guess number
 '''
 # Answer Buttons
 c2_button = tk.Button(window,
