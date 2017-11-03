@@ -164,7 +164,6 @@ for i in range(0, 5):
         pool_2.append([i, j])
 
 pool_3 = [0, 1, 2, 3, 4]
-WNAK = []
 
 
 random.seed(time.time())
