@@ -21,14 +21,14 @@
 * 當成功猜到數字後 ```RE``` 的按鈕會出現，按下即可重新開始
 ![Alt text](img2.png)
 
-### 2*N #C game
-![Alt text](c*n_1.png)
+### 2*N #C game 範圍修改
+![Alt text](cn_1.png)
 
 ```python3 algorithm_HW2_e.py``` ----> 2*n (def:6) #C game
 
 * 要改成 T(n)，在 ```algorithm_HW2_e.py``` 的 153 行跟 154 行把 for 迴圈改成 ```for i in range(0, n)``` 與 ```for i in range(i+1, n)```。
 
-![Alt text](c*n_2.png)
+![Alt text](cn_2.png)
 
 ```python3 algorithm_HW2_j.py``` ----> 2*n (def:6) #C game (expected number)
 
