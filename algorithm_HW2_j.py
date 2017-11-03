@@ -3,15 +3,18 @@ import random
 import tkinter as tk
 from tkinter import LEFT, BOTTOM, RIGHT, TOP
 
+# main window setting
 window = tk.Tk()
 window.title('-------------2*5 #c Game-------------')
 window.configure(background='light yellow')
 # window.geometry('600x400')
 
 
+# Main function. Check users response(2c, 1c, 0c)
 def c_game(response):
     global pool_2
     global guess_1, guess_2
+    # 2c =  print Correct
     if(response == '2c'):
         # print('Correct. So the answer is', guess_1, guess_2)
         var_system_ask_1.set('Correct. The number is')
@@ -21,6 +24,7 @@ def c_game(response):
         print('Correct. The number is', guess_1, guess_2)
         restart_button.pack(side=RIGHT)
 
+    # 1c delete choosed and not possible set.
     elif(response == '1c'):
         pool_2.remove([guess_1, guess_2])
         guess_1 = pool_3[random.randrange(0, len(pool_3))]
@@ -34,6 +38,7 @@ def c_game(response):
             guess_2 = tmp
         ask_ans()
 
+    # 0c delete choosed and not possible set.
     elif(response == '0c'):
         pool_3.remove(guess_1)
         pool_3.remove(guess_2)
@@ -48,15 +53,15 @@ def c_game(response):
 
         guess_1 = pool_3[random.randrange(0, len(pool_3))]
         guess_2 = pool_3[random.randrange(0, len(pool_3))]
-
+        # check guess_1 != guess_2
         while(guess_1 == guess_2):
             guess_2 = pool_3[random.randrange(0, len(pool_3))]
-
+        # check data format.
         if(guess_1 > guess_2):
             tmp = guess_1
             guess_1 = guess_2
             guess_2 = tmp
-
+        # check will not ask same question again.
         while([guess_1, guess_2] not in pool_2):
             guess_1 = pool_3[random.randrange(0, len(pool_3))]
             guess_2 = pool_3[random.randrange(0, len(pool_3))]
@@ -72,6 +77,7 @@ def c_game(response):
         ask_ans()
 
 
+# UI print guess number
 def ask_ans():
     global guess_1, guess_2
     # print('Candidate:', pool_2)
@@ -135,6 +141,7 @@ l_system_ask_3.pack(side=LEFT)
 l_system_ask_4.pack(side=LEFT)
 
 
+# restart button reset all things.
 def restart():
     print()
     print('---------------restart---------------')
@@ -158,21 +165,24 @@ def restart():
     ask_ans()
 
 
+# creat a array to store the all possible set.
 pool_2 = []
 for i in range(0, 6):
     for j in range(i+1, 6):
         pool_2.append([i, j])
 
+# expect number
 pool_3 = [0, 1, 2, 3, 4, 5]
 
 
+# random to choose a set from pool_2
 random.seed(time.time())
 test = random.randrange(0, len(pool_2))
 # print()
 guess_1 = pool_2[test][0]
 guess_2 = pool_2[test][1]
 print('log: ')
-ask_ans()
+ask_ans()  # print the guess number
 '''
 # Answer Buttons
 c2_button = tk.Button(window,
@@ -190,6 +200,7 @@ c0_button.pack()
 '''
 
 
+# get user's answer
 def e_submit():
     ans = e.get()
     # print(guess_1, guess_2)
