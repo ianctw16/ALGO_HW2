@@ -20,6 +20,7 @@ def c_game(response):
         var_system_ask_4.set('')
         print('Correct. The number is', guess_1, guess_2)
         restart_button.pack(side=RIGHT)
+        # window.configure(background='gold')
 
     elif(response == '1c'):
         pool_2.remove([guess_1, guess_2])
@@ -136,6 +137,7 @@ l_system_ask_4.pack(side=LEFT)
 
 
 def restart():
+    # window.configure(background='light yellow')
     print()
     print('---------------restart---------------')
     print()
@@ -164,7 +166,6 @@ for i in range(0, 5):
         pool_2.append([i, j])
 
 pool_3 = [0, 1, 2, 3, 4]
-WNAK = []
 
 
 random.seed(time.time())
