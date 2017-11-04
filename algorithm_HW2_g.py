@@ -175,10 +175,6 @@ for i in range(0, 5):
 
 # expect number
 pool_3 = [0, 1, 2, 3, 4]
-<<<<<<< HEAD:algorithm_HW2_2.py
-
-=======
->>>>>>> 829d94312030ec6c5b4da40fb27047a971e4a1d7:algorithm_HW2_g.py
 
 # random to choose a set from pool_2
 random.seed(time.time())
