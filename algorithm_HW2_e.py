@@ -3,9 +3,13 @@ import random
 import tkinter as tk
 from tkinter import LEFT, BOTTOM, RIGHT, TOP
 
+# ask how many number user want to play.
+number_of_c = input("2*n #c. Enter n(2~6):")
+number_of_c = int(number_of_c)
+
 # main window setting
 window = tk.Tk()
-window.title('-------------2*5 #c Game-------------')
+window.title('-------------2*' + str(number_of_c) + ' #c Game-------------')
 window.configure(background='light yellow')
 # window.geometry('600x400')
 
@@ -139,8 +143,8 @@ def restart():
     print()
     global pool_2, guess_1, guess_2
     pool_2 = []
-    for i in range(0, 5):
-        for j in range(i+1, 5):
+    for i in range(0, number_of_c):
+        for j in range(i+1, number_of_c):
             pool_2.append([i, j])
 
     random.seed(time.time())
@@ -157,8 +161,8 @@ def restart():
 
 # creat a array to store the all possible set.
 pool_2 = []
-for i in range(0, 6):
-    for j in range(i+1, 6):
+for i in range(0, number_of_c):
+    for j in range(i+1, number_of_c):
         pool_2.append([i, j])
 
 # random to choose a set from pool_2
